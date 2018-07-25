@@ -16,7 +16,7 @@ import libPhoneNumber_iOS
 
 open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, CountryPickerDelegate, CTKFlagPhoneNumberDelegate {
     
-    var delegateCustom: CTKFlagPhoneNumberSearchDelegate?
+    open weak var delegateSearch: CTKFlagPhoneNumberSearchDelegate?
     
     /// The size of the flag
     public var flagSize: CGSize = CGSize(width: 32, height: 32) {
@@ -197,7 +197,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     }
     
     @objc private func displayAlphabeticKeyBoard() {
-        delegateCustom?.didClickSearchCountriesButton(sender: self)
+        delegateSearch?.didClickSearchCountriesButton(sender: self)
         showSearchController()
     }
     
