@@ -15,7 +15,7 @@
 
 import Foundation
 
-@objc protocol CTKFlagPhoneNumberTextFieldDelegate : class {
+@objc protocol CTKFlagPhoneNumberSearchDelegate {
     @objc func didClickSearchCountriesButton(sender: AnyObject!)
 }
 

@@ -8,11 +8,11 @@
 import Foundation
 import libPhoneNumber_iOS
 
-@objc protocol CTKFlagPhoneNumberTextFieldDelegate : class {
-    
-    func didClickSearchCountriesButton(sender: AnyObject!)
-    //    func didClickSearchCountriesButton(_ textField: CTKFlagPhoneNumberTextField, didAddItem: String)
-}
+//@objc protocol CTKFlagPhoneNumberTextFieldDelegate : class {
+//
+//    func didClickSearchCountriesButton(sender: AnyObject!)
+//    //    func didClickSearchCountriesButton(_ textField: CTKFlagPhoneNumberTextField, didAddItem: String)
+//}
 
 open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, CountryPickerDelegate, CTKFlagPhoneNumberDelegate {
     
