@@ -8,13 +8,7 @@
 import Foundation
 import libPhoneNumber_iOS
 
-//@objc protocol CTKFlagPhoneNumberTextFieldDelegate : class {
-//
-//    func didClickSearchCountriesButton(sender: AnyObject!)
-//    //    func didClickSearchCountriesButton(_ textField: CTKFlagPhoneNumberTextField, didAddItem: String)
-//}
-
-open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, CountryPickerDelegate, CTKFlagPhoneNumberDelegate {
+open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, CountryPickerDelegate, CTKFlagPhoneNumberDelegate, CTKFlagPhoneNumberSearchDelegate {
     
     open weak var delegateSearch: CTKFlagPhoneNumberSearchDelegate?
     
@@ -198,6 +192,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     
     @objc private func displayAlphabeticKeyBoard() {
         delegateSearch?.didClickSearchCountriesButton(sender: self)
+        //        self.perform(#selector(showSearchController), with: nil, afterDelay: 1)
         showSearchController()
     }
     
@@ -325,12 +320,13 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         }
     }
     
-    private func showSearchController() {
+    @objc private func showSearchController() {
         if let countries = countryPicker.countries {
             let searchCountryViewController = CTKSearchCountryViewController(countries: countries)
             let navigationViewController = UINavigationController(rootViewController: searchCountryViewController)
             
             searchCountryViewController.delegate = self
+            searchCountryViewController.delegateSearch = self
             
             parentViewController?.present(navigationViewController, animated: false, completion: nil)
         }
@@ -390,11 +386,14 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         self.countryCode = countryCode
         
         reload(with: phoneCode)
+        
+        //        delegateSearch?.didSelectCountryFromPickerView(sender: self)
     }
     
     // - CTKFlagPhoneNumberDelegate
     
     internal func didSelect(country: Country) {
+        
         guard let phoneCode = country.phoneCode else { return }
         guard let countryCode = country.code else { return }
         
@@ -403,4 +402,24 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         
         reload(with: phoneCode)
     }
+    
+    // - CTKFlagPhoneNumberSearchDelegate
+    
+    public func didDismissViewController(sender: AnyObject!) {
+        delegateSearch?.didSelectSearchCountry(sender: self)
+    }
+    
+    public func didClickSearchCountriesButton(sender: AnyObject!) {
+        
+    }
+    
+    public func didSelectSearchCountry(sender: AnyObject!) {
+        
+    }
+    
+    public func didSelectCountryFromPickerView(sender: AnyObject!) {
+        
+    }
+    
 }
+
