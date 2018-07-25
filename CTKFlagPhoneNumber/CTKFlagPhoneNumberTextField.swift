@@ -16,7 +16,7 @@ import libPhoneNumber_iOS
 
 open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, CountryPickerDelegate, CTKFlagPhoneNumberDelegate {
     
-    var delegateCustom: CTKFlagPhoneNumberTextFieldDelegate?
+    var delegateCustom: CTKFlagPhoneNumberSearchDelegate?
     
     /// The size of the flag
     public var flagSize: CGSize = CGSize(width: 32, height: 32) {
