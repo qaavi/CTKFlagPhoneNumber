@@ -59,7 +59,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
             if hasPhoneNumberExample == false {
                 placeholder = nil
             }
-            updatePlaceholder()
+            updatePlaceholderWithType()
         }
     }
     
@@ -365,14 +365,25 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
             self.phoneCode = phoneCode
         }
         
-        updatePlaceholder()
+        updatePlaceholderWithType()
         
         didEditText()
     }
     
     private func updatePlaceholder() {
+        
         if hasPhoneNumberExample == true {
             if let countryCode = countryCode, var exampleNumber = try? phoneUtil.format(phoneUtil.getExampleNumber(countryCode), numberFormat: .INTERNATIONAL) {
+                removeCountryCode(in: &exampleNumber)
+                placeholder = exampleNumber
+            }
+        }
+    }
+    
+    private func updatePlaceholderWithType() {
+        
+        if hasPhoneNumberExample == true {
+            if let countryCode = countryCode, var exampleNumber = try? phoneUtil.format(phoneUtil.getExampleNumber(forType: countryCode, type: NBEPhoneNumberType.MOBILE), numberFormat: .INTERNATIONAL) {
                 removeCountryCode(in: &exampleNumber)
                 placeholder = exampleNumber
             }
