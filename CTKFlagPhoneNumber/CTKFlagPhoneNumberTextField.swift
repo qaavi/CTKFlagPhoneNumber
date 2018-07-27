@@ -191,7 +191,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     }
     
     @objc private func displayAlphabeticKeyBoard() {
-        delegateSearch?.didClickSearchCountriesButton(sender: self)
+        delegateSearch?.didClickSearchCountriesButton?(sender: self)
         //        self.perform(#selector(showSearchController), with: nil, afterDelay: 1)
         showSearchController()
     }
@@ -202,7 +202,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         inputAccessoryView = nil
         resignFirstResponder()
         
-        delegateSearch?.didClickOKButton(sender: self)
+        delegateSearch?.didClickOKButton?(sender: self)
     }
     
     // - Utils
@@ -418,21 +418,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     
     // - CTKFlagPhoneNumberSearchDelegate
     
-    public func didClickOKButton(sender: AnyObject!) {
-        
-    }
-    public func didClickSearchCountriesButton(sender: AnyObject!) {
-        
-    }
-    public func didSelectSearchCountry(sender: AnyObject!) {
-        
-    }
     public func didDismissViewController(sender: AnyObject!) {
-        delegateSearch?.didSelectSearchCountry(sender: self)
-    }
-    public func didSelectCountryFromPickerView(sender: AnyObject!) {
-        
+        delegateSearch?.didSelectSearchCountry?(sender: self)
     }
 }
-
-

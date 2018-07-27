@@ -59,7 +59,7 @@ class CTKSearchCountryViewController: UITableViewController, UISearchResultsUpda
     
     @objc private func dismissController() {
         dismiss(animated: true, completion: {
-            self.delegateSearch?.didDismissViewController(sender: self)
+            self.delegateSearch?.didDismissViewController?(sender: self)
         })
         //          dismiss(animated: false, completion: nil)
     }
