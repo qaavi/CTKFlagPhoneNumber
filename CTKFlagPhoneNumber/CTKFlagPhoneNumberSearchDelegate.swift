@@ -16,6 +16,7 @@
 import Foundation
 
 @objc public protocol CTKFlagPhoneNumberSearchDelegate {
+    func didClickOKButton(sender: AnyObject!)
     func didClickSearchCountriesButton(sender: AnyObject!)
     func didSelectSearchCountry(sender: AnyObject!)
     func didDismissViewController(sender: AnyObject!)

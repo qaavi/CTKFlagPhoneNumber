@@ -61,9 +61,7 @@ class CTKSearchCountryViewController: UITableViewController, UISearchResultsUpda
         dismiss(animated: true, completion: {
             self.delegateSearch?.didDismissViewController(sender: self)
         })
-        //        dismiss(animated: true) {
-        //        }
-        //        dismiss(animated: false, completion: nil)
+        //          dismiss(animated: false, completion: nil)
     }
     
     private func initSearchBarController() {
