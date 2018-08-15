@@ -400,7 +400,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         
         reload(with: phoneCode)
         
-        //        delegateSearch?.didSelectCountryFromPickerView(sender: self)
+        delegateSearch?.didSelectCountryFromPickerView?(sender: self)
     }
     
     // - CTKFlagPhoneNumberDelegate
