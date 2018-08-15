@@ -397,10 +397,11 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     public func countryPhoneCodePicker(_ picker: CountryPicker, didSelectCountryWithName name: String, countryCode: String, phoneCode: String, flag: UIImage) {
         flagButton.setImage(flag, for: .normal)
         self.countryCode = countryCode
+        self.text = ""
         
         reload(with: phoneCode)
         
-        delegateSearch?.didSelectCountryFromPickerView?(sender: self)
+        //        delegateSearch?.didSelectCountryFromPickerView?(sender: self)
     }
     
     // - CTKFlagPhoneNumberDelegate
@@ -412,6 +413,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         
         flagButton.setImage(country.flag, for: .normal)
         self.countryCode = countryCode
+        self.text = ""
         
         reload(with: phoneCode)
     }
