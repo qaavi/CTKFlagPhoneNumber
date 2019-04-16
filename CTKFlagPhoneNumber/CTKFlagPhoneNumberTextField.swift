@@ -10,17 +10,17 @@ import libPhoneNumber_iOS
 
 open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, CountryPickerDelegate, CTKFlagPhoneNumberDelegate, CTKFlagPhoneNumberSearchDelegate {
     
-    open weak var delegateSearch: CTKFlagPhoneNumberSearchDelegate?
+    @objc open weak var delegateSearch: CTKFlagPhoneNumberSearchDelegate?
     
     /// The size of the flag
-    public var flagSize: CGSize = CGSize(width: 32, height: 32) {
+    @objc public var flagSize: CGSize = CGSize(width: 32, height: 32) {
         didSet {
             layoutSubviews()
         }
     }
     
     /// The edges insets of the flag button
-    public var flagButtonEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5) {
+    @objc public var flagButtonEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5) {
         didSet {
             layoutSubviews()
         }
@@ -34,7 +34,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         return CGSize(width: width, height: height)
     }
     
-    public var phoneCodeTextField: UITextField = UITextField()
+    @objc public var phoneCodeTextField: UITextField = UITextField()
     private lazy var countryPicker: CountryPicker = CountryPicker()
     private lazy var phoneUtil: NBPhoneNumberUtil = NBPhoneNumberUtil()
     private var formatter: NBAsYouTypeFormatter?
@@ -54,7 +54,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     
     /// Present in the placeholder an example of a phone number according to the selected country code.
     /// If false, you can set your own placeholder. Set to true by default.
-    public var hasPhoneNumberExample: Bool = true {
+    @objc public var hasPhoneNumberExample: Bool = true {
         didSet {
             if hasPhoneNumberExample == false {
                 placeholder = nil
@@ -80,7 +80,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     }
     
     /// If set, a search button appears in the picker inputAccessoryView to present a country search view controller
-    public var parentViewController: UIViewController?
+    @objc public var parentViewController: UIViewController?
     
     /// Input Accessory View for the texfield
     public var textFieldInputAccessoryView: UIView?
@@ -142,13 +142,13 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         flagButton.accessibilityLabel = "flagButton"
         flagButton.addTarget(self, action: #selector(displayCountryKeyboard), for: .touchUpInside)
         flagButton.translatesAutoresizingMaskIntoConstraints = false
-        flagButton.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
+        flagButton.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
     }
     
     private func setupPhoneCodeTextField() {
         phoneCodeTextField.isUserInteractionEnabled = false
         phoneCodeTextField.translatesAutoresizingMaskIntoConstraints = false
-        phoneCodeTextField.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+        phoneCodeTextField.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
     }
     
     private func setupLeftView() {
@@ -208,7 +208,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     // - Utils
     
     /// Get the current formatted phone number
-    public func getFormattedPhoneNumber() -> String? {
+    @objc public func getFormattedPhoneNumber() -> String? {
         return phoneNumber
     }
     
@@ -217,7 +217,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
         return phoneCodeTextField.text
     }
     
-    public func getCountryCode() -> String? {
+    @objc public func getCountryCode() -> String? {
         return countryCode
     }
     
@@ -294,11 +294,11 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     }
     
     /// Set the country image according to country code. Example "FR"
-    public func setFlag(for regionCode: String) {
+    @objc public func setFlag(for regionCode: String) {
         countryPicker.setCountry(regionCode)
     }
     
-    public func set(phoneNumber: String) {
+    @objc public func set(phoneNumber: String) {
         var formattedPhoneNumber = format(string: phoneNumber)
         
         if let validNumber = isValidNumber(phoneNumber: formattedPhoneNumber) {
@@ -345,13 +345,13 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     }
     
     private func getCountryListBarButtonItems() -> [UIBarButtonItem] {
-        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(resetKeyBoard))
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(resetKeyBoard))
         
         doneButton.accessibilityLabel = "doneButton"
         
         if parentViewController != nil {
-            let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(displayAlphabeticKeyBoard))
+            let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: #selector(displayAlphabeticKeyBoard))
             
             searchButton.accessibilityLabel = "searchButton"
             
