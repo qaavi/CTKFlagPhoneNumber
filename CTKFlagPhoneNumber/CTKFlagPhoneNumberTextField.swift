@@ -177,7 +177,7 @@ open class CTKFlagPhoneNumberTextField: UITextField, UITextFieldDelegate, Countr
     @objc private func displayNumberKeyBoard() {
         keyboardType = .numberPad
         inputView = nil
-        inputAccessoryView = textFieldInputAccessoryView
+//         inputAccessoryView = textFieldInputAccessoryView
         tintColor = .gray
         reloadInputViews()
     }
